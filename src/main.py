@@ -4,7 +4,7 @@ import time
 import save
 import acak
 
-print("""
+print('''
 _________        ___.                                     __     _________________________________ 
 \_   ___ \___.__.\_ |__   _________________  __ __  ____ |  | __ \_____  \   _  \______  \______  |
 /    \  \<   |  | | __ \_/ __ \_  __ \____ \|  |  \/    \|  |/ /  /  ____/  /_\  \  /    /   /    /
@@ -12,7 +12,7 @@ _________        ___.                                     __     _______________
  \______  / ____| |___  /\___  >__|  |   __/|____/|___|  /__|_ \ \_______ \_____  /____/   /____/  
         \/\/          \/     \/      |__|              \/     \/         \/     \/     
                    
-          """)
+''')
 
 print("Welcome to the breach protocol minigame solver!")
 print("=== Menu ===")
@@ -26,7 +26,24 @@ if choice == "1":
     file = input("Masukkan nama file: ")
     start_time = time.time()
     buffer_size, matrix_width, matrix_height, matrix, number_of_sequences, sequences, rewards = read.read_file(file)
-    all_paths = read.generate_strict_combinations(matrix, buffer_size)
+    all_paths = read.generate_all_possible_path(matrix, buffer_size)
+
+    print("Matrix: ")
+    for i in range(matrix_height):
+        for j in range(matrix_width):
+            print(matrix[i][j], end=" ")
+        print()
+    
+    print()
+    print("Sequences: ")
+    for i in range(number_of_sequences):
+        for j in range(len(sequences[i])):
+            print(sequences[i][j], end=" ")
+        print()
+        print(rewards[i], end=" ")
+        print()
+    
+    print()
 
     results = read.compare_paths(all_paths, sequences, rewards)
     result.result(results, buffer_size)
@@ -47,6 +64,7 @@ elif choice == "2":
 
     start_time = time.time()
     matrix = acak.randMatrix(token_list, rows, cols)
+    print()
     print("Matrix: ")
     for i in range(rows):
         for j in range(cols):
@@ -66,7 +84,7 @@ elif choice == "2":
         print()
     
     print()
-    all_paths = read.generate_strict_combinations(matrix, bufferSize)
+    all_paths = read.generate_all_possible_path(matrix, bufferSize)
     results = read.compare_paths(all_paths, sequences, rewards)
     result.result(results, bufferSize)
     end_time = time.time()

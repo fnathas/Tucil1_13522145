@@ -1,0 +1,12 @@
+4
+3 3
+7A 1C 55
+BD 1C BD
+BD 7A BD
+3
+BD 1C
+15
+7A BD
+20
+55 BD
+30

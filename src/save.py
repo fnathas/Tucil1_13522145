@@ -11,4 +11,5 @@ def toFile(list, x):
             f.write("\n")
             for i in range(x):
                 f.write(str(list[0][i][1][0] + 1) + ", " + str(list[0][i][1][1] + 1) + "\n")
+        print("Hasil permainan berhasil disimpan di " + path)
     print("Terima kasih telah menggunakan program ini!")

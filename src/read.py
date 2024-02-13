@@ -17,11 +17,9 @@ def read_file(file: str) -> tuple[int, int, int, list[list[str]], int, list[list
 
     return buffer_size, matrix_width, matrix_height, matrix, number_of_sequences, sequences, rewards
 
-def generate_strict_combinations(matrix, step):
+def generate_all_possible_path(matrix, step):
     rows, cols = len(matrix), len(matrix[0])
     all_paths = []
-
-    # Queue for the paths to explore, each entry is a tuple with the current path and the remaining steps
     queue = deque(
         ([(matrix[0][x], (x, 0))], step - 1, "vertical", {(x, 0)})
         for x in range(cols)
@@ -47,7 +45,7 @@ def generate_strict_combinations(matrix, step):
                             visited | {(x, next_y)},
                         )
                     )
-        else:  # horizontal
+        else:
             for next_x in range(cols):
                 if (next_x, y) not in visited:
                     queue.append(
